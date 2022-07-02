@@ -9,12 +9,16 @@ BUTTON_GPIO = 16
 LED_GPIO = 20
 
 should_blink = False
+contBotao = 0
+contCiclos = 0
 
 def signal_handler(sig, frame):
     GPIO.cleanup()
     sys.exit(0)
 
 def button_released_callback(channel):
+    contBotao = contBotao + 1
+    print("Botão Solto! (" + str(contBotao) + ")")
     global should_blink
     should_blink = not should_blink  
 
@@ -30,6 +34,8 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
     
     while True:
+        contCiclos = contCiclos + 1
+        print("Total de ciclos: " + str(contCiclos) + "(")
         if should_blink:
             GPIO.output(LED_GPIO, GPIO.HIGH) 
         time.sleep(0.5)

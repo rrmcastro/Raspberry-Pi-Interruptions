@@ -5,6 +5,8 @@ import sys
 import RPi.GPIO as GPIO
 
 BUTTON_GPIO = 16
+contPressionado = 0
+contSolto = 0
 
 def signal_handler(sig, frame):
     GPIO.cleanup()
@@ -12,9 +14,10 @@ def signal_handler(sig, frame):
 
 def button_callback(channel):
     if not GPIO.input(BUTTON_GPIO):
-        print("Botão pressionado!")
+        print("Botão pressionado! (" + str(contPressionado) + ")")
+        contPressionado = contPressionado + 1
     else:
-        print("Botao solto!")
+        print("Botao solto! (" + str(contSolto) + ")")
 
 if __name__ == '__main__':
     GPIO.setmode(GPIO.BCM)

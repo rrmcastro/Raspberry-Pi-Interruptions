@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 
 BUTTON_GPIO = 16
 LED_GPIO = 20
+contPressionado = 0
 
 last_LED_state = 0
 
@@ -14,6 +15,8 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 def button_pressed_callback(channel):
+    contPressionado = contPressionado + 1
+    print("Botão pressionado! (" + str(contPressionado) + ")")
     global last_LED_state
     GPIO.output(LED_GPIO, not last_LED_state)
     last_LED_state = not last_LED_state

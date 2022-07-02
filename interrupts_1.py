@@ -7,11 +7,15 @@ import RPi.GPIO as GPIO
 BUTTON_GPIO = 16
 LED_GPIO = 20
 
+contPressionado = 0
+
 def signal_handler(sig, frame):
     GPIO.cleanup()
     sys.exit(0)
 
 def button_callback(channel):
+    contPressionado = contPressionado + 1
+    print("Botão pressionado! (" + str(contPressionado) + ")")
     if GPIO.input(BUTTON_GPIO):
         GPIO.output(LED_GPIO, GPIO.LOW)
     else:
