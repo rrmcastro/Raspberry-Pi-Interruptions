@@ -13,10 +13,13 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 def button_callback(channel):
+    global contPressionado
+    global contSolto
     if not GPIO.input(BUTTON_GPIO):
-        print("Botão pressionado! (" + str(contPressionado) + ")")
         contPressionado = contPressionado + 1
+        print("Botão pressionado! (" + str(contPressionado) + ")")
     else:
+        contSolto = contSolto + 1
         print("Botao solto! (" + str(contSolto) + ")")
 
 if __name__ == '__main__':
@@ -28,3 +31,4 @@ if __name__ == '__main__':
     
     signal.signal(signal.SIGINT, signal_handler)
     signal.pause()
+    

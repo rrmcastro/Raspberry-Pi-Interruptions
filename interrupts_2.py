@@ -15,6 +15,7 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 def button_pressed_callback(channel):
+    global contPressionado
     contPressionado = contPressionado + 1
     print("Botão pressionado! (" + str(contPressionado) + ")")
     global last_LED_state
