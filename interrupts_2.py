@@ -6,8 +6,8 @@ import RPi.GPIO as GPIO
 
 BUTTON_GPIO = 16
 LED_GPIO = 20
-contPressionado = 0
 
+contPressionado = 0
 last_LED_state = 0
 
 def signal_handler(sig, frame):
